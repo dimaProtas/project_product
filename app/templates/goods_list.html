@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+
+{% block title %}goods list{% endblock %}
+{% block content %}
+<div class="continerGoodsAll">
+    <h1 class="title_goods">Goods list:</h1>
+
+        <div class="containerGoods">
+            <table>
+                 <tr><th>Название</th></th><th>Дата добавления</th><th>Количество </th><th>Поставщик</th><th>Категория</th></tr>
+                {% for object in objects_list %}
+                    <tr>
+                        <td>{{ object.name }}</td>
+                        <td>{{ object.date_added|date:"d M Y" }} ({{ object.date_added|time:"H:i"  }})</td>
+                        <td>{{ object.count }}</td>
+                        <td>{{ object.provider }}</td>
+                        <td>
+                            {% for chapter in object.chapter.all %}
+                                <a href="{% url 'chapter-goods' pk=chapter.id %}">{{ chapter.name }}</a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    <button>Добавить</button>
+</div>
+{% endblock %}

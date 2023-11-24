@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Chapters list{% endblock %}
+
+{% block content %}
+    <div class="containerChapter">
+        {% for chapter in chapters_list %}
+        <div class="containerProduct">
+            <a href="{% url 'chapter-goods' pk=chapter.id %}">
+                {{ chapter.name }}
+            </a>
+            <div class="product">
+                {% for product in chapter.productmodel_set.all %}
+                    <p>{{ product.name }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

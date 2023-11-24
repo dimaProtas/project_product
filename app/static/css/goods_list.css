@@ -1,0 +1,36 @@
+body {
+    margin: 0px;
+    background-color: #222;
+}
+
+.continerGoodsAll {
+    margin: 40px;
+}
+
+.title_goods {
+    color: #fff;
+}
+
+
+.containerGoods {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  background-color: #20B2AA;
+  border-radius: 10px;
+  width: 80%;
+}
+
+table {
+  width: 80%;
+}
+
+tr {
+    margin: 10px 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: solid 1px;
+    padding: 10px;
+}

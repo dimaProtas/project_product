@@ -1,0 +1,20 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/goods_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chapter.css' %}">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+
+<body>
+{% include 'nav/nav.html' %}
+{% block content %}{% endblock %}
+</body>
+
+</html>
