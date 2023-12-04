@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:latest
+    privileged: true
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: my_database
+      POSTGRES_USER: dima
+      POSTGRES_PASSWORD: dima
+
+  backend:
+    build:
+      context: ./app
+    privileged: true
+    restart: always
+    expose:
+      - 8000
+    command: bash -c "
+      python manage.py migrate &&
+      gunicorn app.wsgi -b 0.0.0.0:8000
+      "
+    environment:
+      DJANGO_SETTINGS_MODULE: app.settings.site_1
+    volumes:
+      - ./app:/web #для сохранения изображений в контейнере и локально
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/media:/web/media #для сохранения изображений в контейнере и локально
+    depends_on:
+      - backend

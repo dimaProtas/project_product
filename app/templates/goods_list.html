@@ -5,7 +5,8 @@
 <div class="continerGoodsAll">
     <h2>{{ site.name }}</h2>
     <h1 class="title_goods">Goods list:</h1>
-
+    {% include 'inc/form.html' %}
+    <div>
         <div class="containerGoods">
             <table>
                  <tr><th>Название</th></th><th>Дата добавления</th><th>Количество </th><th>Поставщик</th><th>Категория</th></tr>
@@ -25,7 +26,6 @@
                 {% endfor %}
             </table>
         </div>
-
-    <button>Добавить</button>
+    </div>
 </div>
 {% endblock %}

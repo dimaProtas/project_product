@@ -6,6 +6,7 @@ from django.db.models import Manager
 
 class ChapterModel(models.Model):
     name = models.CharField(max_length=100, default=None)
+    image = models.ImageField(upload_to='image_chapter/', blank=True, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True)
     objects = Manager()  # Менеджер выводит всю информацию если использовать в view
     on_site = CurrentSiteManager('site') # Выводит только для выбранного сайта в settings

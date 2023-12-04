@@ -4,9 +4,13 @@
 
 {% block content %}
     <h2>{{ site.name }}</h2>
+    {% include 'inc/form.html' %}
     <div class="containerChapter">
         {% for chapter in chapters_list %}
         <div class="containerProduct">
+            {% if chapter.image %}
+                <img src="{{ chapter.image.url }}" alt="{{ chapter.name }}" />
+            {% endif %}
             <a href="{% url 'chapter-goods' pk=chapter.id %}">
                 {{ chapter.name }}
                 <span>({{ chapter.site.name }})</span>
@@ -16,6 +20,10 @@
                     <p>{{ product.name }}</p>
                 {% endfor %}
             </div>
+            <form method="post" action="{% url 'delete_chapter' chapter_id=chapter.id %}">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
         </div>
         {% endfor %}
     </div>
